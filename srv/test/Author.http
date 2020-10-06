@@ -1,0 +1,10 @@
+### Submit Orders
+POST http://localhost:8080/odata/v4/AdminService/Authors
+Content-Type: application/json
+# Accept-Language: de
+
+
+    { "ID":"id13", "name":"Author 1" }
+
+
+# Sending this three times should result in a 409: 5 exceeds stock for book #9b084139-0b1e-43b6-b12a-7b3669d75f02

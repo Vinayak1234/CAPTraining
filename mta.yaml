@@ -1,0 +1,35 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = CAPTraining
+## language=java; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: CAPTraining
+version: 1.0.0
+description: "CAPTraining application"
+parameters:
+  enable-parallel-deployments: true
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install
+      - npx cds build
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: CAPTraining-srv
+ # ------------------------------------------------------------
+   type: java
+   path: srv
+   build-parameters:
+     builder: custom
+     commands: [ mvn clean package ]
+     build-result: "target/*.[wj]ar"
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+
+
+
