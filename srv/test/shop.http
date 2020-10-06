@@ -1,0 +1,29 @@
+### Submit Books
+POST http://localhost:8080/odata/v4/AdminService/Books
+Content-Type: application/json
+# Accept-Language: de
+
+    { 
+    "ID":1, 
+    "title":"book title1",
+    "descr": "book title1 desc",    
+    "stock": 10,
+    "price": 50,
+    "author_ID" : 1
+    }
+
+### Submit Authors
+POST http://localhost:8080/odata/v4/AdminService/Authors
+Content-Type: application/json
+# Accept-Language: de
+
+
+    { 
+     "ID":1, 
+     "name":"Author 1",
+     "dateOfBirth": "2017-01-01",  
+     "placeOfBirth":"Bangalore"
+    }
+
+
+# Sending this three times should result in a 409: 5 exceeds stock for book #9b084139-0b1e-43b6-b12a-7b3669d75f02
