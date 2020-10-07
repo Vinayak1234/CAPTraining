@@ -1,12 +1,14 @@
 ## CAPTraining
 
+#### Download the CAPTraining java project from git
+
 <code>
   git clone https://github.com/Vinayak1234/CAPTraining.git 
   
   cd projects/CAPTraining
 </code>
 
-#### Create CAPTraining java project
+#### 1. Create CAPTraining java project
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
 -DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
