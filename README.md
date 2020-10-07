@@ -106,7 +106,7 @@ service AdminService {
     `mvn spring-boot:run`
     
 
-#### Seup hana to deploy to cf:
+#### Seup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
@@ -139,8 +139,11 @@ service AdminService {
           - npx cds build
     ```
 
-3. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+3. Build the project, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
 
-    `mvn spring-boot:run`
+    `mbt build`
 
+4. Deploy the project to CF:
+
+    `cf deploy ./mta_archives/CAPTraining_1.0.0.mtar`
 
