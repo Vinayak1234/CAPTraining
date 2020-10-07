@@ -176,6 +176,6 @@ service AdminService {
    These are the paths currently served …
 
    ##### /odata/v4/AdminService / $metadata
-     Authors
-     Books
+     * Authors
+     * Books
 
