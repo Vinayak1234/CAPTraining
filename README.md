@@ -1,4 +1,4 @@
-## CAPTraining
+## CAP Java Training
 
 #### Download the CAPTraining java project from git
 
@@ -10,7 +10,7 @@
 
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
-#### 1. Create CAPTraining java project
+#### 1.  Create CAPTraining java project
 To create CAPTraining project navigate to projects folder and execute the below maven command.
 
 <code>
@@ -156,9 +156,8 @@ service AdminService {
     `cf deploy ./mta_archives/CAPTraining_1.0.0.mtar`
     
     On successful deploy the terminal console looks like this and copy the service url from console as highlighted below.
-    
-  
-    	Started async upload of application "CAPTraining-srv"
+      
+    	
 	Staging application "CAPTraining-srv"...
 	Application "CAPTraining-srv" staged
 	Starting application "CAPTraining-srv"...
@@ -171,7 +170,7 @@ service AdminService {
     
     https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/
     
-    That will look like this.
+    That will look like this with the list of services. Clock on any service to fetch the details.
     
    ### Welcome to cds-services
    These are the paths currently served …
