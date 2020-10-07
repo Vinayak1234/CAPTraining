@@ -8,6 +8,8 @@
   cd projects/CAPTraining
 </code>
 
+Or you can follow the below steps to create and run/deploy this hands-on exercise.
+
 #### 1. Create CAPTraining java project
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
@@ -139,11 +141,36 @@ service AdminService {
           - npx cds build
     ```
 
-3. Build the project, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
+3. Build the project from terminal, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
 
     `mbt build`
 
 4. Deploy the project to CF:
 
     `cf deploy ./mta_archives/CAPTraining_1.0.0.mtar`
+    
+    On successful deploy the terminal console looks like this and copy the service url from console as highlighted below.
+    
+  
+    	Started async upload of application "CAPTraining-srv"
+	Staging application "CAPTraining-srv"...
+	Application "CAPTraining-srv" staged
+	Starting application "CAPTraining-srv"...
+	Application "CAPTraining-srv" started and available at **2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com**
+	Skipping deletion of services, because the command line option "--delete-services" is not specified.
+	Process finished.
+	Use "cf dmol -i 0b8c38fb-0865-11eb-8372-eeee0a9e2566" to download the logs of the process.
+ 
+    Copy the highlighted url to browser.
+    
+    https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/
+    
+    That will look like this.
+    
+   ### Welcome to cds-services
+   These are the paths currently served …
+
+   ##### /odata/v4/AdminService / $metadata
+     Authors
+     Books
 
