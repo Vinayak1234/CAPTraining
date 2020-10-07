@@ -93,7 +93,7 @@ service AdminService {
 ```
 
 
-#### Seup SQLITE for local development:
+#### 2. Seup SQLITE for local development:
 
 1. Install the sqlite
 
@@ -108,7 +108,7 @@ service AdminService {
     `mvn spring-boot:run`
     
 
-#### Seup hana and deploy the project to cf:
+#### 3. Seup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
