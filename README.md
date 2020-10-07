@@ -61,32 +61,32 @@ service AdminService {
 
 ```
 
-<dependencies>
-		<dependency>
-			<groupId>com.sap.cds</groupId>
-			<artifactId>cds-starter-spring-boot-odata</artifactId>
+	<dependencies>
+	    <dependency>
+		<groupId>com.sap.cds</groupId>
+		<artifactId>cds-starter-spring-boot-odata</artifactId>
+	    </dependency>
+
+	    <dependency>
+	       <groupId>com.sap.cds</groupId>
+	       <artifactId>cds-feature-hana</artifactId>
+	    </dependency>
+
+	     <dependency>
+		<groupId>org.xerial</groupId>
+		<artifactId>sqlite-jdbc</artifactId>
+	      </dependency>
+
+	      <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	       </dependency>
+
+	       <dependency>
+		  <groupId>com.sap.cds</groupId>
+		  <artifactId>cds-feature-cloudfoundry</artifactId>
 		</dependency>
-
-    <dependency>
-       <groupId>com.sap.cds</groupId>
-       <artifactId>cds-feature-hana</artifactId>
-    </dependency>
-
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-    <dependency>
-          <groupId>com.sap.cds</groupId>
-          <artifactId>cds-feature-cloudfoundry</artifactId>
-    </dependency>
         
 	</dependencies>
   
