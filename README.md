@@ -112,11 +112,11 @@ service AdminService {
 
     `cds add hana`
 
-2. Execute the below command to add an mta.yaml file out of CDS models and config
+2. Execute the below command to add an mta.yaml file out of CDS models and config. The file will be created under project root folder (CAPTraining/mta.yaml)
 
     `cds add mta`
     
-3. Remove the production params from build-parameters
+3. Remove the production params from mta.yaml (CAPTraining/mta.yaml) file build-parameters since we will be deploying the mtar file to our dev or test instance.
 
     From:
     ```
