@@ -170,7 +170,7 @@ service AdminService {
     
     https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/
     
-    That will look like this with the list of services. Clock on any service to fetch the details.
+    That will look like this with the list of services. Click on any service to fetch the details.
     
    ### Welcome to cds-services
    These are the paths currently served …
