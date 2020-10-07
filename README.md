@@ -16,21 +16,16 @@
 
 #### Seup SQLITE for local development:
 
-<code>
-  npm install --save-dev sqlite3
-</code>
+1. Install the sqlite
 
-Deploy the DB objects to local sqlite
+  `npm install --save-dev sqlite3`
 
-<code>
-  cds deploy --to sqlite
-</code>
+2. Deploy the DB objects to local sqlite
 
+  `cds deploy --to sqlite`
 
-Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+3. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
 
-<code>
-   mvn spring-boot:run
+   `mvn spring-boot:run`
 
- </code>
 
