@@ -55,20 +55,92 @@ service AdminService {
 }
 ```
 
+3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+
+```
+
+<dependencies>
+		<dependency>
+			<groupId>com.sap.cds</groupId>
+			<artifactId>cds-starter-spring-boot-odata</artifactId>
+		</dependency>
+
+    <dependency>
+       <groupId>com.sap.cds</groupId>
+       <artifactId>cds-feature-hana</artifactId>
+    </dependency>
+
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+    <dependency>
+          <groupId>com.sap.cds</groupId>
+          <artifactId>cds-feature-cloudfoundry</artifactId>
+    </dependency>
+        
+	</dependencies>
+  
+```
 
 
 #### Seup SQLITE for local development:
 
 1. Install the sqlite
 
-  `npm install --save-dev sqlite3`
+    `npm install --save-dev sqlite3`
 
 2. Deploy the DB objects to local sqlite
 
-  `cds deploy --to sqlite`
+    `cds deploy --to sqlite`
 
 3. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
 
-   `mvn spring-boot:run`
+    `mvn spring-boot:run`
+    
+
+#### Seup hana to deploy to cf:
+
+1. Execute the below command to add configuration for SAP HANA deployment
+
+    `cds add hana`
+
+2. Execute the below command to add an mta.yaml file out of CDS models and config
+
+    `cds add mta`
+    
+3. Remove the production params from build-parameters
+
+    From:
+    ```
+    build-parameters:
+      before-all:
+       - builder: custom
+         commands:
+          - npm install --production
+          - npx -p @sap/cds-dk cds build --production
+    ```
+
+    Change to:
+
+    ```
+    build-parameters:
+      before-all:
+       - builder: custom
+         commands:
+          - npm install
+          - npx cds build
+    ```
+
+3. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+
+    `mvn spring-boot:run`
 
 
