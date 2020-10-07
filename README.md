@@ -11,6 +11,8 @@
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
 #### 1. Create CAPTraining java project
+To create CAPTraining project navigate to projects folder and execute the below maven command.
+
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
 -DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
@@ -18,7 +20,7 @@ Or you can follow the below steps to create and run/deploy this hands-on exercis
 
 </code>
 
-1. Create schema.cds under CAPTraining>db  for creating entities.
+1. Create the schema.cds under CAPTraining>db  for creating entities.
 
  ```
   
@@ -44,7 +46,7 @@ Or you can follow the below steps to create and run/deploy this hands-on exercis
 
 ```
 
-2. Create Admin-Service.cds under CAPTraining>srv for creating services.
+2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
@@ -99,11 +101,15 @@ service AdminService {
 
     `npm install --save-dev sqlite3`
 
-2. Deploy the DB objects to local sqlite
+2. Build cds objects
+
+    `cds build/all`
+
+3. Deploy the DB objects to local sqlite
 
     `cds deploy --to sqlite`
 
-3. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+4. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
 
     `mvn spring-boot:run`
     
