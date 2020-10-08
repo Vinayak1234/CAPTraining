@@ -1,4 +1,6 @@
-## CAPTraining
+## CAP Java Training
+
+#### Download the CAPTraining java project from git
 
 <code>
   git clone https://github.com/Vinayak1234/CAPTraining.git 
@@ -6,7 +8,11 @@
   cd projects/CAPTraining
 </code>
 
-#### Create CAPTraining java project
+Or you can follow the below steps to create and run/deploy this hands-on exercise.
+
+#### 1.  Create CAPTraining java project
+To create CAPTraining project navigate to projects folder and execute the below maven command.
+
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
 -DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
@@ -14,23 +20,207 @@
 
 </code>
 
-#### Seup SQLITE for local development:
+1. Create the schema.cds under CAPTraining>db  for creating entities.
 
-<code>
-  npm install --save-dev sqlite3
-</code>
-
-Deploy the DB objects to local sqlite
-
-<code>
-  cds deploy --to sqlite
-</code>
+ ```
+  
+  namespace sap.ibso.captraining;
 
 
-Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+entity Books {
+  key ID : Integer;
+  title  : String(111);
+  descr  : String(1111);
+  author_ID : Integer;
+  stock  : Integer;
+  price  : Decimal(9,2);
+  author : Association to Authors  on author.ID = author_ID;
+}
 
-<code>
-   mvn spring-boot:run
+entity Authors {
+  key ID : Integer;
+  name   : String(111);
+  dateOfBirth  : Date;  
+  placeOfBirth : String;  
+  books  : Association to many Books on books.author_ID = ID;
+}
 
- </code>
+```
+
+2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
+
+```
+using { sap.ibso.captraining as my } from '../db/schema';
+
+service AdminService {
+
+    entity Books as projection on my.Books;
+
+    entity Authors as projection on my.Authors;
+
+    //Postfix Projections
+    entity AuthorsPostFix as SELECT from my.Authors {key ID, name, placeOfBirth, dateOfBirth};    
+    
+    //Smart * Selector
+    entity BooksSmartSelector as SELECT from my.Books { *, author.name as author };
+
+    // Path Expressions in from clauses
+    entity BooksPathExpfrom as SELECT from my.Authors[name='Emily Bront'].books { key ID};
+
+    // Path Expressions in select clauses
+    entity BooksPathExpselect  as SELECT *, author.name from my.Books;
+
+    // Path Expressions in Where clauses
+    entity BooksPathExpwhere  as SELECT from my.Books where author.name='Emily Brontë';
+
+    // Books and Authors left join
+    entity BooksAuthorsJoin as SELECT from my.Books as books
+    LEFT JOIN my.Authors author ON books.author_ID = author.ID {
+        key books.ID, 
+        books.title, 
+        author.name
+    };
+
+    // With Infix Filters
+    entity BooksInfixFilter as SELECT key ID, books[title='Mystery'].title from my.Authors
+                                WHERE name='Agatha Christie';
+
+    // CDL-style Casts
+    entity BooksCDLStyle as SELECT from my.Books { ID, price + 1 as additionalPrice : Decimal };
+
+    //Excluding Clause
+    entity BooksExcludeClause as SELECT from my.Books excluding { stock,price };
+
+
+}
+```
+
+3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+
+```
+
+	<dependencies>
+	    <dependency>
+		<groupId>com.sap.cds</groupId>
+		<artifactId>cds-starter-spring-boot-odata</artifactId>
+	    </dependency>
+
+	    <dependency>
+	       <groupId>com.sap.cds</groupId>
+	       <artifactId>cds-feature-hana</artifactId>
+	    </dependency>
+
+	     <dependency>
+		<groupId>org.xerial</groupId>
+		<artifactId>sqlite-jdbc</artifactId>
+	      </dependency>
+
+	      <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	       </dependency>
+
+	       <dependency>
+		  <groupId>com.sap.cds</groupId>
+		  <artifactId>cds-feature-cloudfoundry</artifactId>
+		</dependency>
+        
+	</dependencies>
+  
+```
+
+
+#### 2. Seup SQLITE for local development:
+
+1. Install the sqlite
+
+    `npm install --save-dev sqlite3`
+
+2. Build cds objects
+
+    `cds build/all`
+
+3. Deploy the DB objects to local sqlite
+
+    `cds deploy --to sqlite`
+
+4. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
+
+    `mvn spring-boot:run`
+    
+
+#### 3. Seup hana and deploy the project to cf:
+
+1. Execute the below command to add configuration for SAP HANA deployment
+
+    `cds add hana`
+
+2. Execute the below command to add an mta.yaml file out of CDS models and config. The file will be created under project root folder (CAPTraining/mta.yaml)
+
+    `cds add mta`
+    
+3. Remove the production params from mta.yaml (CAPTraining/mta.yaml) file build-parameters since we will be deploying the mtar file to our dev or test instance.
+
+    From:
+    ```
+    build-parameters:
+      before-all:
+       - builder: custom
+         commands:
+          - npm install --production
+          - npx -p @sap/cds-dk cds build --production
+    ```
+
+    Change to:
+
+    ```
+    build-parameters:
+      before-all:
+       - builder: custom
+         commands:
+          - npm install
+          - npx cds build
+    ```
+
+3. Build the project from terminal, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
+
+    `mbt build`
+
+4. Deploy the project to CF:
+
+    `cf deploy ./mta_archives/CAPTraining_1.0.0.mtar`
+    
+    On successful deploy the terminal console looks like this and copy the service url from console as highlighted below.
+      
+    	
+	Staging application "CAPTraining-srv"...
+	Application "CAPTraining-srv" staged
+	Starting application "CAPTraining-srv"...
+	Application "CAPTraining-srv" started and available at **2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com**
+	Skipping deletion of services, because the command line option "--delete-services" is not specified.
+	Process finished.
+	Use "cf dmol -i 0b8c38fb-0865-11eb-8372-eeee0a9e2566" to download the logs of the process.
+ 
+    Copy the highlighted url to browser.
+    
+    https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/
+    
+    That will look like this with the list of services. Click on any service to fetch the details.
+    
+   ### Welcome to cds-services
+   These are the paths currently served …
+
+   ##### /odata/v4/AdminService / $metadata
+       * BooksPathExpfrom
+       * BooksCDLStyle
+       * BooksSmartSelector
+       * BooksPathExpselect
+       * BooksInfixFilter
+       * BooksAuthorsJoin
+       * AuthorsPostFix
+       * Authors
+       * BooksExcludeClause
+       * BooksPathExpwhere
+       * Books
 

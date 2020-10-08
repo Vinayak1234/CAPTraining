@@ -5,4 +5,39 @@ service AdminService {
     entity Books as projection on my.Books;
 
     entity Authors as projection on my.Authors;
+
+    //Postfix Projections
+    entity AuthorsPostFix as SELECT from my.Authors {key ID, name, placeOfBirth, dateOfBirth};    
+    
+    //Smart * Selector
+    entity BooksSmartSelector as SELECT from my.Books { *, author.name as author };
+
+    // Path Expressions in from clauses
+    entity BooksPathExpfrom as SELECT from my.Authors[name='Emily Bront'].books { key ID};
+
+    // Path Expressions in select clauses
+    entity BooksPathExpselect  as SELECT *, author.name from my.Books;
+
+    // Path Expressions in Where clauses
+    entity BooksPathExpwhere  as SELECT from my.Books where author.name='Emily Brontë';
+
+    // Books and Authors left join
+    entity BooksAuthorsJoin as SELECT from my.Books as books
+    LEFT JOIN my.Authors author ON books.author_ID = author.ID {
+        key books.ID, 
+        books.title, 
+        author.name
+    };
+
+    // With Infix Filters
+    entity BooksInfixFilter as SELECT key ID, books[title='Mystery'].title from my.Authors
+                                WHERE name='Agatha Christie';
+
+    // CDL-style Casts
+    entity BooksCDLStyle as SELECT from my.Books { ID, price + 1 as additionalPrice : Decimal };
+
+    //Excluding Clause
+    entity BooksExcludeClause as SELECT from my.Books excluding { stock,price };
+
+
 }
