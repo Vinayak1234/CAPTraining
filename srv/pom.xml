@@ -11,6 +11,7 @@
 	<packaging>jar</packaging>
 
 	<name>CAPTraining</name>
+    
 
 	<!-- ACTUAL DEPENDENCIES -->
 	<dependencies>
@@ -38,8 +39,8 @@
         <dependency>
             <groupId>com.sap.cds</groupId>
             <artifactId>cds-feature-cloudfoundry</artifactId>
-        </dependency>
-        
+        </dependency>        
+		
 	</dependencies>
 
 	<build>
