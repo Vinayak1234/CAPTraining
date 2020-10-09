@@ -10,7 +10,8 @@
     "deploy": "cds deploy"
   },
   "dependencies": {
-    "@sap/cds": "3.31.2"
+    "@sap/cds": "3.31.2",
+    "hdb": "^0.18.1"
   },
   "cds": {
     "build": {
@@ -18,7 +19,18 @@
     },
     "requires": {
       "db": {
-        "kind": "sqlite"
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "hana",
+          "model": [
+            "db/",
+            "srv/",
+            "app/",
+            "schema",
+            "services",
+            []
+          ]
+        }
       }
     },
     "odata": {
@@ -26,6 +38,6 @@
     }
   },
   "devDependencies": {
-    "sqlite3": "^5.0.0"
+    "@sap/hdi-deploy": "^3.11.11"
   }
 }
