@@ -20,7 +20,7 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
-1. Create the schema cds files under CAPTraining>db  for creating entities.
+1. Create the schema.cds and cvschema.cds files under CAPTraining>db  for creating entities.
 
  * schema.cds
  ```
