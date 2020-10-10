@@ -1,4 +1,4 @@
-## CAP Java Training
+## CAP Query Language
 
 #### Download the CAPTraining java project from git
 
