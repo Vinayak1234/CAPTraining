@@ -11,7 +11,8 @@
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
 #### 1.  Create CAPTraining java project
-To create CAPTraining project navigate to projects folder and execute the below maven command.
+
+1. To create CAPTraining project navigate to projects folder and execute the below maven command.
 
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
@@ -27,8 +28,10 @@ This will initialize the application using the maven archetype `cds-services-arc
 * The project is named `CAPTraining`.
 * The `db` folder stores database-related artifacts.
 * The `srv` folder stores your Java application.
+&nbsp;
 
-1. Create the schema.cds under CAPTraining>db  for creating entities.
+
+2. Create the schema.cds under CAPTraining>db  for creating entities.
 
  ```
   
@@ -53,7 +56,7 @@ entity Authors {
 }
 ```
 
-2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
+3. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
@@ -67,7 +70,7 @@ service AdminService {
 
 ```
 
-3. Create custom handler BookServiceHandler.java  CAPTraining>srv>src>main>java>com>sap>cap>CAPTraining>handler
+4. Create custom handler BookServiceHandler.java  CAPTraining>srv>src>main>java>com>sap>cap>CAPTraining>handler
 
 ```
 
@@ -126,7 +129,7 @@ public class BookServiceHandler  implements EventHandler{
 
 ```
 
-4. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+5. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
