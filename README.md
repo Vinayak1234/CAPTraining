@@ -10,6 +10,10 @@
 
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
+To complete this exercise Connect to Cloud connector and add your hanatrial subaccount:
+https://localhost:8443/
+
+
 #### 1.  Create CAPTraining java project
 To create CAPTraining project navigate to projects folder and execute the below maven command.
 
