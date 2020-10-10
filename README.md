@@ -1,4 +1,4 @@
-## CAP Java Training
+## CAP Services using java
 
 #### Download the CAPTraining java project from git
 
