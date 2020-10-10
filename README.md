@@ -232,15 +232,9 @@ service AdminService {
    These are the paths currently served …
 
    ##### /odata/v4/AdminService / $metadata
-       * BooksPathExpfrom
-       * BooksCDLStyle
-       * BooksSmartSelector
-       * BooksPathExpselect
-       * BooksInfixFilter
-       * BooksAuthorsJoin
-       * AuthorsPostFix
-       * Authors
-       * BooksExcludeClause
-       * BooksPathExpwhere
+       * BookDetails
+       * Authors  
        * Books
 
+URL to access parameterized service :
+https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BookDetails(AUTHOR_NAME='Author 2')/Set
