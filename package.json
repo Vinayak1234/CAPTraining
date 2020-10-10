@@ -19,18 +19,7 @@
     },
     "requires": {
       "db": {
-        "kind": "sqlite",
-        "[production]": {
-          "kind": "hana",
-          "model": [
-            "db/",
-            "srv/",
-            "app/",
-            "schema",
-            "services",
-            []
-          ]
-        }
+        "kind": "sqlite"
       }
     },
     "odata": {
@@ -38,6 +27,7 @@
     }
   },
   "devDependencies": {
-    "@sap/hdi-deploy": "^3.11.11"
+    "@sap/hdi-deploy": "^3.11.11",
+    "sqlite3": "^5.0.0"
   }
 }
