@@ -106,7 +106,7 @@ service AdminService {
 ```
 
 
-#### 2. Seup SQLITE for local development:
+#### 2. Setup SQLITE for local development:
 
 1. Install the sqlite
 
