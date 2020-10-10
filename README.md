@@ -166,7 +166,7 @@ service AdminService {
 ```
 
 
-#### 2. Seup hana and deploy the project to cf:
+#### 2. Setup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
