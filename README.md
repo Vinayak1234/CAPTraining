@@ -13,6 +13,7 @@ Or you can follow the below steps to create and run/deploy this hands-on exercis
 #### 1.  Create CAPTraining java project
 To create CAPTraining project navigate to projects folder and execute the below maven command.
 
+1. Create CAPTraining java project
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
 -DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
@@ -20,7 +21,7 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
-1. Create the schema.cds and cvschema.cds files under CAPTraining>db  for creating entities.
+2. Create the schema.cds and cvschema.cds files under CAPTraining>db  for creating entities.
 
  * schema.cds
  ```
@@ -96,7 +97,7 @@ END;
  ```
  
  
-2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
+4. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
@@ -115,7 +116,7 @@ service AdminService {
 
 ```
 
-3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+5. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
@@ -151,26 +152,7 @@ service AdminService {
 ```
 
 
-#### 2. Seup SQLITE for local development:
-
-1. Install the sqlite
-
-    `npm install --save-dev sqlite3`
-
-2. Build cds objects
-
-    `cds build/all`
-
-3. Deploy the DB objects to local sqlite
-
-    `cds deploy --to sqlite`
-
-4. Start your application by running mvn spring-boot:run in the terminal and open it in a new tab.
-
-    `mvn spring-boot:run`
-    
-
-#### 3. Seup hana and deploy the project to cf:
+#### 2. Seup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
@@ -236,7 +218,8 @@ service AdminService {
        * Authors  
        * Books
 
-URL to access service :
+#### 3. Test the services:
+
 
 Get Book details service:
 https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BookDetails(AUTHOR_NAME='Author 2')/Set
