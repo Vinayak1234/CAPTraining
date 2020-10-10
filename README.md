@@ -59,7 +59,7 @@ service AdminService {
 
 ```
 
-3. Create custom handler BookServiceHandler  CAPTraining>srv>src>main>java>com>sap>cap>CAPTraining>handler
+3. Create custom handler BookServiceHandler.java  CAPTraining>srv>src>main>java>com>sap>cap>CAPTraining>handler
 
 ```
 
@@ -118,7 +118,7 @@ public class BookServiceHandler  implements EventHandler{
 
 ```
 
-3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+4. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
