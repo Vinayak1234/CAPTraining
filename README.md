@@ -33,6 +33,8 @@ This will initialize the application using the maven archetype `cds-services-arc
 * The `db` folder stores database-related artifacts.
 * The `srv` folder stores your Java application.
 
+&nbsp;
+
 2. Create the schema.cds and cvschema.cds files under CAPTraining>db  for creating entities.
 
  * schema.cds
