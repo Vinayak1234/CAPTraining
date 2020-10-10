@@ -25,7 +25,7 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
-<br/>
+&nbsp;
 
 This will initialize the application using the maven archetype `cds-services-archetype` and create your project as follows:
 
