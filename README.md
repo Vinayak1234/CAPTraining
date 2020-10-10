@@ -19,7 +19,7 @@ To create CAPTraining project navigate to projects folder and execute the below 
 -DgroupId=com.sap.cap -DartifactId=CAPTraining -Dpackage=com.sap.cap.CAPTraining  
 
 </code>
-
+<br>
 This will initialize the application using the maven archetype `cds-services-archetype` and create your project as follows:
 
 * The project is named `CAPTraining`.
