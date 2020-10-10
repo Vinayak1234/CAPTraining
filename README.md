@@ -125,7 +125,7 @@ service AdminService {
     `mvn spring-boot:run`
     
 
-#### 3. Seup hana and deploy the project to cf:
+#### 3. Setup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
