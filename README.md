@@ -11,7 +11,8 @@
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
 #### 1.  Create CAPTraining java project
-To create CAPTraining project navigate to projects folder and execute the below maven command.
+
+1. To create CAPTraining project navigate to projects folder and execute the below maven command.
 
 <code>
  mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
@@ -20,14 +21,17 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
+&nbsp;
+
 This will initialize the application using the maven archetype `cds-services-archetype` and create your project as follows:
 
 * The project is named `CAPTraining`.
 * The `db` folder stores database-related artifacts.
 * The `srv` folder stores your Java application.
 
+&nbsp;
 
-1. Create the schema.cds under CAPTraining>db  for creating entities.
+2. Create the schema.cds under CAPTraining>db  for creating entities.
 
  ```
   
@@ -53,7 +57,7 @@ This will initialize the application using the maven archetype `cds-services-arc
 
 ```
 
-2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
+3. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
@@ -66,7 +70,7 @@ service AdminService {
 }
 ```
 
-3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+4. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
