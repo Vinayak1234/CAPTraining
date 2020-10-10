@@ -20,11 +20,12 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
-1. Create the schema.cds under CAPTraining>db  for creating entities.
+1. Create the schema cds files under CAPTraining>db  for creating entities.
 
+ * schema.cds
  ```
   
-  namespace sap.ibso.captraining;
+ namespace sap.ibso.captraining;
 
 
 entity Books {
@@ -39,60 +40,79 @@ entity Books {
 
 entity Authors {
   key ID : Integer;
-  name   : String(111);
+  name   : String(50);
   dateOfBirth  : Date;  
   placeOfBirth : String;  
   books  : Association to many Books on books.author_ID = ID;
 }
 
+
 ```
 
+ * cvschema.cds
+ 
+  ```
+  @cds.persistence.exists
+  entity TF_GET_BOOKDETAILS (AUTHOR_NAME:String(50)){
+    key BOOK_ID : Integer;
+    TITLE :        String(111);
+    DESCR :        String(1111);
+    STOCK :        Integer;
+    PRICE :        Decimal(9,2);
+    AUTHOR_NAME:   String(50);
+}
+  
+ ```
+ 
+ 3. Create table function TF_GET_BOOKDETAILS.hdbfunction under CAPTraining/db/src/function/
+ 
+ ```
+ 
+ FUNCTION "TF_GET_BOOKDETAILS"(AUTHOR_NAME NVARCHAR(50))
+RETURNS TABLE (
+    "BOOK_ID"       INTEGER,
+    "TITLE"         NVARCHAR(111),
+    "DESCR"         NVARCHAR(1111),
+    "STOCK"         INTEGER,
+    "PRICE"         DECIMAL,
+    "AUTHOR_NAME"   NVARCHAR(50)
+)
+       LANGUAGE SQLSCRIPT
+       SQL SECURITY INVOKER AS
+BEGIN
+
+RETURN select
+        books.ID as BOOK_ID,
+        books.TITLE,
+        books.DESCR,
+        books.STOCK,
+        books.PRICE,
+        author.NAME AS AUTHOR_NAME
+        FROM SAP_IBSO_CAPTRAINING_BOOKS books
+        LEFT OUTER JOIN SAP_IBSO_CAPTRAINING_AUTHORS author 
+        ON books.author_ID=author.ID AND author.NAME= :AUTHOR_NAME;
+END;
+ 
+ ```
+ 
+ 
 2. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
+using { TF_GET_BOOKDETAILS } from '../db/cvschema';
 
 service AdminService {
 
-    entity Books as projection on my.Books;
+    @readonly
+    entity BookDetails(AUTHOR_NAME:String) as SELECT FROM TF_GET_BOOKDETAILS(AUTHOR_NAME: :AUTHOR_NAME){*};
 
-    entity Authors as projection on my.Authors;
+    entity Books as SELECT FROM my.Books{*};
 
-    //Postfix Projections
-    entity AuthorsPostFix as SELECT from my.Authors {key ID, name, placeOfBirth, dateOfBirth};    
-    
-    //Smart * Selector
-    entity BooksSmartSelector as SELECT from my.Books { *, author.name as author };
-
-    // Path Expressions in from clauses
-    entity BooksPathExpfrom as SELECT from my.Authors[name='Emily Bront'].books { key ID};
-
-    // Path Expressions in select clauses
-    entity BooksPathExpselect  as SELECT *, author.name from my.Books;
-
-    // Path Expressions in Where clauses
-    entity BooksPathExpwhere  as SELECT from my.Books where author.name='Emily Brontë';
-
-    // Books and Authors left join
-    entity BooksAuthorsJoin as SELECT from my.Books as books
-    LEFT JOIN my.Authors author ON books.author_ID = author.ID {
-        key books.ID, 
-        books.title, 
-        author.name
-    };
-
-    // With Infix Filters
-    entity BooksInfixFilter as SELECT key ID, books[title='Mystery'].title from my.Authors
-                                WHERE name='Agatha Christie';
-
-    // CDL-style Casts
-    entity BooksCDLStyle as SELECT from my.Books { ID, price + 1 as additionalPrice : Decimal };
-
-    //Excluding Clause
-    entity BooksExcludeClause as SELECT from my.Books excluding { stock,price };
-
-
+    entity Authors as SELECT FROM my.Authors{*};
 }
+
+
 ```
 
 3. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
