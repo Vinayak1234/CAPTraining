@@ -165,7 +165,7 @@ public class BookServiceHandler  implements EventHandler{
 ```
 
 
-#### 2. Seup SQLITE for local development:
+#### 2. Setup SQLITE for local development:
 
 1. Install the sqlite
 
@@ -184,7 +184,7 @@ public class BookServiceHandler  implements EventHandler{
     `mvn spring-boot:run`
     
 
-#### 3. Seup hana and deploy the project to cf:
+#### 3. Setup hana and deploy the project to cf:
 
 1. Execute the below command to add configuration for SAP HANA deployment
 
