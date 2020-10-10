@@ -25,6 +25,13 @@ To create CAPTraining project navigate to projects folder and execute the below 
 
 </code>
 
+<br>
+This will initialize the application using the maven archetype `cds-services-archetype` and create your project as follows:
+
+* The project is named `CAPTraining`.
+* The `db` folder stores database-related artifacts.
+* The `srv` folder stores your Java application.
+
 2. Create the schema.cds and cvschema.cds files under CAPTraining>db  for creating entities.
 
  * schema.cds
