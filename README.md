@@ -1,4 +1,4 @@
-## CAP Java Training
+## CAP java service with parameterized table function
 
 #### Download the CAPTraining java project from git
 
