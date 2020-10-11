@@ -229,14 +229,54 @@ service AdminService {
 
    ##### /odata/v4/AdminService / $metadata
        * BookDetails
+       * BookDetails
        * Authors  
        * Books
 
 #### 3. Test the services:
 
 
-Get Book details service:
-https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BookDetails(AUTHOR_NAME='Author 2')/Set
+1. Get Book details service:
+&nbsp;
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BookDetails(AUTHOR_NAME='Author 2')/Set
+* Method :GET
+* Response: &nbsp;
+```
+{
+    "@context": "../$metadata#BookDetails%28'Author%25202'%29/Set",
+    "@metadataEtag": "W/\"06867e7a835c0669ec2a7300bdf3902b999a9ec7a5cb91c97612eaab2f880b6b\"",
+    "value": [
+        {
+            "BOOK_ID": 2,
+            "TITLE": "book title2",
+            "DESCR": "book title2cdesc",
+            "STOCK": 10,
+            "PRICE": 50,
+            "AUTHOR_NAME": "Author 2"
+        }
+    ]
+}
+```
+
+
+2. Get BookInfo View:
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BooksInfoView(BOOK_ID=2)/Set
+* Method :GET
+* Response: &nbsp;
+
+```
+{
+    "@context": "../$metadata#BooksInfoView%282%29/Set",
+    "@metadataEtag": "W/\"180221c86e281e02d4b6eed7e5fb45b0cd06d6a33afbefb318c782515c2eea21\"",
+    "value": [
+        {
+            "id": 2,
+            "title": "book title2",
+            "book_author_info": "From my HANA view: The book book title2 is authored by Author 2"
+        }
+    ]
+}
+```
 
 ##### Create Author service:
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
