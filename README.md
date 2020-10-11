@@ -190,4 +190,39 @@ service AdminService {
    ##### /odata/v4/AdminService / $metadata
      * Authors
      * Books
+     
+
+#### 3. Test the services:
+
+##### Create Author service:
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
+* Method :POST
+
+* Payload
+```
+    { 
+     "ID":2, 
+     "name":"Author 2",
+     "dateOfBirth": "2017-01-01",  
+     "placeOfBirth":"Bangalore"
+    }
+```
+
+##### Create Books service :
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Books
+* Method :POST
+
+* Payload :
+
+```
+{ 
+    "ID":2, 
+    "title":"book title2",
+    "descr": "book title2cdesc",    
+    "stock": 10,
+    "price": 50,
+    "author_ID" : 2
+    }
+
+```
 
