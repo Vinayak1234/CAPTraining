@@ -18,12 +18,14 @@ https://localhost:8443/
 To create CAPTraining project navigate to projects folder and execute the below maven command.
 
 1. Create CAPTraining java project
-<code>
- mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
--DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
--DgroupId=com.sap.cap -DartifactId=CAPTraining -Dpackage=com.sap.cap.CAPTraining  
 
-</code>
+```
+
+mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds \
+-DarchetypeVersion=1.3.0 -DcdsVersion=3.31.2 \
+-DgroupId=com.sap.cap -DartifactId=CAPTraining -Dpackage=com.sap.cap.CAPTraining
+
+```
 
 &nbsp;
 
