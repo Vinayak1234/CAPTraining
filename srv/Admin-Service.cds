@@ -19,6 +19,10 @@ service AdminService {
     entity BooksPathExpselect  as SELECT *, author.name from my.Books;
 
     // Path Expressions in Where clauses
+    //     SELECT * from Books WHERE EXISTS (
+    //    SELECT 1 from Authors WHERE Authors.ID = Books.author_ID
+    //     AND Authors.name='Emily Brontë'
+    //    );
     entity BooksPathExpwhere  as SELECT from my.Books where author.name='Emily Brontë';
 
     // Books and Authors left join
@@ -30,6 +34,10 @@ service AdminService {
     };
 
     // With Infix Filters
+    // SELECT books.title from Authors
+    // LEFT JOIN Books books ON ( books.author_ID = Authors.ID )
+    // AND ( books.title = 'Mystery' )  
+    // WHERE Authors.name='Agatha Christie';
     entity BooksInfixFilter as SELECT key ID, books[title='Mystery'].title from my.Authors
                                 WHERE name='Agatha Christie';
 
