@@ -2,7 +2,7 @@
 
 ###### Welcome to CAP Java training. 
 
-Check out the below mentioned branches to execute the hands-on exercise.
+Check out the below mentioned branches to execute the respective hands-on exercise.
 
 * capjavaUnit1  -  CAP Services using java
 * capjavaUnit2  -  CAP Query Language
