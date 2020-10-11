@@ -264,4 +264,38 @@ Change from
        * BooksExcludeClause
        * BooksPathExpwhere
        * Books
+       
+#### 3. Test the services:
+
+##### Create Author service:
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
+* Method :POST
+
+* Payload
+```
+    { 
+     "ID":1, 
+     "name":"Agatha Christie",
+     "dateOfBirth": "2017-01-01",  
+     "placeOfBirth":"Bangalore"
+    }
+```
+
+##### Create Books service :
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Books
+* Method :POST
+
+* Payload :
+
+```
+   { 
+    "ID":1, 
+    "title":"book title1",
+    "descr": "Mystery",    
+    "stock": 10,
+    "price": 50,
+    "author_ID" : 1
+    }
+
+```
 
