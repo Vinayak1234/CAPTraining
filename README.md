@@ -6,5 +6,5 @@ Check out the below mentioned branches to execute the respective hands-on exerci
 
 * capjavaUnit1  -  CAP Services using java
 * capjavaUnit2  -  CAP Query Language
-* capjavaUnit3  -  CAP java service with Parametrized table function 
+* capjavaUnit3  -  CAP java service with Parametrized view and table function 
 * capjavaUnit4  -  CAP Java Custom Event Handler
