@@ -222,7 +222,7 @@ Change from
      * Books
      
 
-#### 3. Test the services:
+#### 4. Test the services:
 
 ##### Create Author service:
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
