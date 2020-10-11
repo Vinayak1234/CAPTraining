@@ -66,9 +66,10 @@ entity Authors {
 
  * cvschema.cds
  
-  ```
-  @cds.persistence.exists
-  entity TF_GET_BOOKDETAILS (AUTHOR_NAME:String(50)){
+ ```
+
+@cds.persistence.exists
+entity TF_GET_BOOKDETAILS (AUTHOR_NAME:String(50)){
     key BOOK_ID : Integer;
     TITLE :        String(111);
     DESCR :        String(1111);
@@ -76,7 +77,14 @@ entity Authors {
     PRICE :        Decimal(9,2);
     AUTHOR_NAME:   String(50);
 }
-  
+
+@cds.persistence.exists
+entity BooksInfo (BOOK_ID : Integer) {
+  key id : Integer;
+  title : String(111);
+  book_author_info : String;
+}
+
  ```
  
  3. Create table function TF_GET_BOOKDETAILS.hdbfunction under CAPTraining/db/src/function/
@@ -110,17 +118,36 @@ END;
  
  ```
  
+ 4. Create View BooksInfo.hdbview
  
-4. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
+ ```
+ 
+VIEW BooksInfo(in BOOK_ID Integer) AS
+SELECT 
+books.ID,
+books.TITLE,
+'From my HANA view: The book ' || TITLE || ' is authored by ' || author_ID AS BOOK_AUTHOR_INFO
+from SAP_IBSO_CAPTRAINING_BOOKS books
+left outer join SAP_IBSO_CAPTRAINING_AUTHORS author on author.ID= books.author_ID
+WHERE books.ID = :BOOK_ID;
+
+ ```
+ 
+ 
+5. Create Admin-Service.cds under CAPTraining>srv for creating admin services.
 
 ```
 using { sap.ibso.captraining as my } from '../db/schema';
-using { TF_GET_BOOKDETAILS } from '../db/cvschema';
+using { TF_GET_BOOKDETAILS,BooksInfo } from '../db/cvschema';
 
 service AdminService {
 
+    // Parameterized table function
     @readonly
     entity BookDetails(AUTHOR_NAME:String) as SELECT FROM TF_GET_BOOKDETAILS(AUTHOR_NAME: :AUTHOR_NAME){*};
+
+    // Parameterized view
+    entity BooksInfoView (BOOK_ID : Integer) as select from BooksInfo(BOOK_ID: :BOOK_ID) {*};
 
     entity Books as SELECT FROM my.Books{*};
 
@@ -130,7 +157,7 @@ service AdminService {
 
 ```
 
-5. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+6. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
@@ -235,8 +262,39 @@ service AdminService {
 
 #### 3. Test the services:
 
+##### Create Author service:
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
+* Method :POST
 
-1. Get Book details service:
+* Payload
+```
+    { 
+     "ID":2, 
+     "name":"Author 2",
+     "dateOfBirth": "2017-01-01",  
+     "placeOfBirth":"Bangalore"
+    }
+```
+
+##### Create Books service :
+* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Books
+* Method :POST
+
+* Payload :
+
+```
+{ 
+    "ID":2, 
+    "title":"book title2",
+    "descr": "book title2cdesc",    
+    "stock": 10,
+    "price": 50,
+    "author_ID" : 2
+    }
+
+```
+
+##### Get Book details service:
 &nbsp;
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BookDetails(AUTHOR_NAME='Author 2')/Set
 * Method :GET
@@ -259,7 +317,7 @@ service AdminService {
 ```
 
 
-2. Get BookInfo View:
+##### Get BookInfo View:
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/BooksInfoView(BOOK_ID=2)/Set
 * Method :GET
 * Response: &nbsp;
@@ -277,37 +335,4 @@ service AdminService {
     ]
 }
 ```
-
-##### Create Author service:
-* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
-* Method :POST
-
-* Payload
-```
-    { 
-     "ID":2, 
-     "name":"Author 2",
-     "dateOfBirth": "2017-01-01",  
-     "placeOfBirth":"Bangalore"
-    }
-```
-
-Create Books service :
-* URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Books
-* Method :POST
-
-* Payload :
-
-```
-{ 
-    "ID":2, 
-    "title":"book title2",
-    "descr": "book title2cdesc",    
-    "stock": 10,
-    "price": 50,
-    "author_ID" : 2
-    }
-
-```
-
 
