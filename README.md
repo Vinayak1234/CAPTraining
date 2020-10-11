@@ -166,6 +166,8 @@ Change from
 
     `cds add mta`
     
+  mta.yaml file is responsible to define each part of your project, the resources necessary to execute this project, and the connection link between their modules.
+  
 4. Remove the production params from mta.yaml (CAPTraining/mta.yaml) file build-parameters since we will be deploying the mtar file to our dev or test instance.
 
     From:
