@@ -8,3 +8,10 @@ entity TF_GET_BOOKDETAILS (AUTHOR_NAME:String(50)){
     PRICE :        Decimal(9,2);
     AUTHOR_NAME:   String(50);
 }
+
+@cds.persistence.exists
+entity BooksInfo (BOOK_ID : Integer) {
+  key id : Integer;
+  title : String(111);
+  book_author_info : String;
+}

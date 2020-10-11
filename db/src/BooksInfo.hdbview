@@ -1,0 +1,8 @@
+VIEW BooksInfo(in BOOK_ID Integer) AS
+SELECT 
+books.ID,
+books.TITLE,
+'From my HANA view: The book ' || TITLE || ' is authored by ' || author_ID AS BOOK_AUTHOR_INFO
+from SAP_IBSO_CAPTRAINING_BOOKS books
+left outer join SAP_IBSO_CAPTRAINING_AUTHORS author on author.ID= books.author_ID
+WHERE books.ID = :BOOK_ID;
