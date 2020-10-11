@@ -166,12 +166,42 @@ service AdminService {
 1. Execute the below command to add configuration for SAP HANA deployment
 
     `cds add hana`
+    
+2. in package.json change the requires part as shwon below to push the project models to cf.
 
-2. Execute the below command to add an mta.yaml file out of CDS models and config. The file will be created under project root folder (CAPTraining/mta.yaml)
+Change from 
+    ```
+    "requires": {
+      "db": {
+        "kind": "sqlite"
+      }
+    }
+    ```
+    
+    To 
+    ```
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "hana",
+          "model": [
+            "db/",
+            "srv/",
+            "app/",
+            "schema",
+            "services"
+          ]
+        }
+      }
+    }
+    ```
+
+3. Execute the below command to add an mta.yaml file out of CDS models and config. The file will be created under project root folder (CAPTraining/mta.yaml)
 
     `cds add mta`
     
-3. Remove the production params from mta.yaml (CAPTraining/mta.yaml) file build-parameters since we will be deploying the mtar file to our dev or test instance.
+4. Remove the production params from mta.yaml (CAPTraining/mta.yaml) file build-parameters since we will be deploying the mtar file to our dev or test instance.
 
     From:
     ```
@@ -194,11 +224,11 @@ service AdminService {
           - npx cds build
     ```
 
-3. Build the project from terminal, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
+5. Build the project from terminal, that will generate mtar (CAPTraining_1.0.0.mtar) file under CAPTraining/mta_archives/CAPTraining_1.0.0.mtar
 
     `mbt build`
 
-4. Deploy the project to CF:
+6. Deploy the project to CF:
 
     `cf deploy ./mta_archives/CAPTraining_1.0.0.mtar`
     
