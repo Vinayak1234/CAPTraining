@@ -6,7 +6,7 @@ Content-Type: application/json
     { 
     "ID":1, 
     "title":"book title1",
-    "descr": "book title1 desc",    
+    "descr": "Mystery",    
     "stock": 10,
     "price": 50,
     "author_ID" : 1
@@ -20,7 +20,7 @@ Content-Type: application/json
 
     { 
      "ID":1, 
-     "name":"Author 1",
+     "name":"Agatha Christie",
      "dateOfBirth": "2017-01-01",  
      "placeOfBirth":"Bangalore"
     }
