@@ -2,11 +2,11 @@
 
 #### Download the CAPTraining java project from git
 
-<code>
-  git clone https://github.com/Vinayak1234/CAPTraining.git 
-  
+```
+  git clone https://github.com/Vinayak1234/CAPTraining.git  
   cd projects/CAPTraining
-</code>
+  git checkout capjavaUnit4
+```
 
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
 
