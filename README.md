@@ -4,8 +4,8 @@
 
 <code>
   git clone https://github.com/Vinayak1234/CAPTraining.git 
-  
   cd projects/CAPTraining
+  git checkout capjavaUnit1  
 </code>
 
 Or you can follow the below steps to create and run/deploy this hands-on exercise.
