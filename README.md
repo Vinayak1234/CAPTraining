@@ -129,8 +129,16 @@ public class BookServiceHandler  implements EventHandler{
 
 
 ```
+5. Create messages.properties under CAPTraining/srv/src/main/resources/
+&nbsp;
+messages.properties
+&nbsp;
+```
+CAPJavaTraining.BookDetailsExists= Book already exists
+```
 
-5. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
+
+6. Remove existing dependencies and add below mentioned dependencies to CAPTraining>srv>pom.xml.
 
 ```
 
