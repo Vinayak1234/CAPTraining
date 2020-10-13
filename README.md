@@ -227,7 +227,7 @@ Change from
 #### 4. Test the services:
 
 
-* Create book.http inside 
+* Create book.http file in CAPTraining/srv/test for testing the services from sqlite 
 
 ```
 
