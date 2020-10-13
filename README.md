@@ -226,6 +226,44 @@ Change from
 
 #### 4. Test the services:
 
+
+* Create book.http inside 
+
+```
+
+### Submit Books
+POST http://localhost:8080/odata/v4/AdminService/Books
+Content-Type: application/json
+# Accept-Language: de
+
+    { 
+    "ID":1, 
+    "title":"book title1",
+    "descr": "book title1 desc",    
+    "stock": 10,
+    "price": 50,
+    "author_ID" : 1
+    }
+
+### Submit Authors
+POST http://localhost:8080/odata/v4/AdminService/Authors
+Content-Type: application/json
+# Accept-Language: de
+
+
+    { 
+     "ID":1, 
+     "name":"Author 1",
+     "dateOfBirth": "2017-01-01",  
+     "placeOfBirth":"Bangalore"
+    }
+
+
+# Sending 
+
+
+```
+
 ##### Create Author service:
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
 * Method :POST
