@@ -194,6 +194,56 @@ service AdminService {
   
 ```
 
+7. Add cds service milestone versions ``` 1.8.0-m2028 ``` to main pom.xml CAPTraining>pom.xml
+
+```
+
+	<properties>
+		<revision>1.0.0</revision>
+
+		<jdk.version>1.8</jdk.version>
+		<cds.services.version>1.8.0-m2028</cds.services.version>
+		<cds4j.version>1.12.0-m20200707-143819</cds4j.version>
+		<spring.boot.version>2.2.3.RELEASE</spring.boot.version>
+
+		<node.version>v10.4.1</node.version>
+		<node.url>http://nexus.wdf.sap.corp:8081/nexus/repository/3rd-party.nodejs.dist.proxy/</node.url>
+	</properties>
+	
+	
+	<repositories>
+		<repository>
+		    <id>nexus.build.milestones</id>
+		    <name>Nexus Deploy Milestones</name>
+		    <url>http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.milestones/</url>
+		</repository>
+		<repository>
+		    <id>nexus.build.releases</id>
+		    <name>Nexus Deploy Snapshots</name>
+		    <url>http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.releases/</url>
+		</repository>
+		<repository>
+		    <id>nexus.build.snapshots</id>
+		    <name>Nexus Deploy Snapshots</name>
+		    <url>http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.snapshots/</url>
+		</repository>
+	    </repositories>
+
+	    <pluginRepositories>
+		<pluginRepository>
+		    <id>nexus.deploy.releases</id>
+		    <name>Nexus Deploy Snapshots</name>
+		    <url>http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.releases/</url>
+		</pluginRepository>
+		<pluginRepository>
+		    <id>nexus.deploy.milestones</id>
+		    <name>Nexus Deploy Snapshots</name>
+		    <url>http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.milestones/</url>
+		</pluginRepository>
+    </pluginRepositories>
+
+```
+
 
 #### 2. Setup hana and deploy the project to cf:
 
