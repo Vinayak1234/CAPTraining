@@ -19,7 +19,18 @@
     },
     "requires": {
       "db": {
-        "kind": "sqlite"
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "hana",
+          "model": [
+            "db/",
+            "srv/",
+            "app/",
+            "schema",
+            "services",
+            []
+          ]
+        }
       }
     },
     "odata": {
