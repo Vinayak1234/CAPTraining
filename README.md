@@ -194,7 +194,7 @@ service AdminService {
   
 ```
 
-7. Add cds service versions from ``` 1.3.0 ``` to ``` 1.9.0 ``` main pom.xml CAPTraining>pom.xml
+7. Add cds service versions from ``` 1.3.0 ``` to ``` 1.9.0 ``` main pom.xml CAPTraining>pom.xml <br>
 change from:
 ```
 <cds.services.version>1.3.0</cds.services.version>
