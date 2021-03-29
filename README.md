@@ -27,8 +27,8 @@ mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -Darchety
 This will initialize the application using the maven archetype `cds-services-archetype` and create your project as follows:
 
 * The project is named `CAPTraining`.
-* The `db` folder stores database-related artifacts.
-* The `srv` folder stores your Java application.
+* The `db` folder will have database-related artifacts.
+* The `srv` folder will have your Java code.
 
 &nbsp;
 
