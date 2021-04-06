@@ -214,16 +214,16 @@ Change to:
 2. in package.json change the requires part as shwon below to push the project models to cf.
 
   Change from 
-    ```
+    
     "requires": {
       "db": {
         "kind": "sqlite"
       }
     }
-    ```
+   
     
     To 
-    ```
+   
     "requires": {
       "db": {
         "kind": "sqlite",
@@ -239,31 +239,24 @@ Change to:
         }
       }
     }
-    ```
+    
     
     change the cds compile from sqlite to hana
     from:
     
-    ```
-    "schema": "cds compile srv --to sql > srv/src/main/resources/schema.sql",
-   ```
+    "schema": "cds compile srv --to sql > srv/src/main/resources/schema.sql", 
    
     to : 
-    ```
-    "schema": "cds compile srv --to hana",
-    ```
+  
+    "schema": "cds compile srv --to hana",  
     
     Change the cds version from  3.31.2 to ^4
-    from:
-    
-     ```
-    "@sap/cds": "3.31.2"
-     ```
+    from: 
+    "@sap/cds": "3.31.2"     
      
-    to:
-    ```
+    to:  
     "@sap/cds": "^4"
-    ```
+  
 
 3. Execute the below command to add an mta.yaml file out of CDS models and config. The file will be created under project root folder (CAPTraining/mta.yaml)
 
