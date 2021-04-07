@@ -82,7 +82,6 @@ entity TF_GET_BOOKDETAILS (AUTHOR_NAME:String(50)){
 }
 
 @cds.persistence.exists
-@cds.persistence.udf
 entity BooksInfo (BOOK_ID : Integer) {
   key id : Integer;
   title : String(111);
