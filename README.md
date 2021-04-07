@@ -88,13 +88,15 @@ service AdminService {
     //    );
     entity BooksPathExpwhere  as SELECT from my.Books where author.name='Agatha Christie';
 
-    // Books and Authors left join
-    entity BooksAuthorsJoin as SELECT from my.Books as books
-    LEFT JOIN my.Authors author ON books.author_ID = author.ID {
-        key books.ID, 
-        books.title, 
-        author.name
-    };
+ 
+    entity BookAuthorAll as projection on my.Authors { *,
+    books.author,
+    books.descr,
+    key books.ID as bookID,
+    books.price,
+    books.stock,
+    books.title
+  };
 
     // With Infix Filters
     // SELECT books.title from Authors
