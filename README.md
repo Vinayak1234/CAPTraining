@@ -226,7 +226,7 @@ Change from
 
 #### 4. Test the services:
 
-
+#### 4.1 Test the services for local sqlite:
 * Create book.http file in CAPTraining/srv/test for testing the services from sqlite 
 
 ```
@@ -263,6 +263,8 @@ Content-Type: application/json
 
 
 ```
+
+#### 4.2 Test the services for sap hana cloud:
 
 ##### Create Author service:
 * URL : https://2d77a5b8trial-dev-captraining-srv.cfapps.eu10.hana.ondemand.com/odata/v4/AdminService/Authors
